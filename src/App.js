@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import styled from 'styled-components'
+import WithPanier from './context/WithPanier'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import 'typeface-germania-one'
+import 'typeface-zilla-slab'
+import 'typeface-lato'
+import 'sanitize.css'
 
-export default App;
+import Header from './components/Header'
+import LivreItem from './components/LivreItem'
+import Panier from './components/Panier'
+
+const Layout = styled.div`
+  border: 5px solid GAINSBORO;
+  background: DARKSLATEGRAY;
+  color: GAINSBORO;
+  font-family: 'lato', sans-serif;
+  padding-bottom: 64px;
+`
+
+const App = ({ context }) => (
+  <Layout>
+    <Header />
+
+    <LivreItem
+      key={context.state.livres['livre1'].id}
+      livre={context.state.livres['livre1']}
+    />
+
+    <Panier />
+  </Layout>
+)
+
+export default WithPanier(App)
